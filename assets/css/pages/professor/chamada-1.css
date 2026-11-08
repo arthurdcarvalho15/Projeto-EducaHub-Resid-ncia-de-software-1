@@ -1,0 +1,103 @@
+.barra-chamada[data-scope-of4pgmnd] {
+  align-items: flex-end;
+  gap: var(--e-5);
+  z-index: 10;
+  flex-wrap: wrap;
+  display: flex;
+  position: sticky;
+  top: 84px;
+}
+.campo-turma[data-scope-of4pgmnd] {
+  min-width: 200px;
+  margin: 0;
+}
+.contador[data-scope-of4pgmnd] {
+  align-items: center;
+  gap: var(--e-2);
+  min-height: var(--alvo-min);
+  font-size: var(--texto-md);
+  margin: 0;
+  display: flex;
+}
+.contador[data-scope-of4pgmnd] strong[data-scope-of4pgmnd] {
+  font-size: var(--texto-xl);
+}
+.contador-marca[data-scope-of4pgmnd] {
+  width: 32px;
+  height: 32px;
+  color: var(--sobre-marca);
+  border: 2px solid var(--fg);
+  border-radius: 999px;
+  place-items: center;
+  display: grid;
+}
+.presentes[data-scope-of4pgmnd] .contador-marca[data-scope-of4pgmnd] {
+  background-color: var(--sucesso-marca);
+}
+.faltas[data-scope-of4pgmnd] .contador-marca[data-scope-of4pgmnd] {
+  background-color: var(--perigo-marca);
+}
+#todos-presentes[data-scope-of4pgmnd] {
+  margin-left: auto;
+}
+.aluno[data-scope-of4pgmnd] {
+  flex-wrap: wrap;
+  align-items: center !important;
+}
+.aluno-num[data-scope-of4pgmnd] {
+  color: var(--texto-suave);
+  min-width: 2ch;
+}
+.aluno-nome[data-scope-of4pgmnd] {
+  flex: 1;
+  min-width: 180px;
+  font-weight: 700;
+}
+.alternador[data-scope-of4pgmnd] {
+  gap: var(--e-2);
+  display: flex;
+}
+.opcao-chamada[data-scope-of4pgmnd] {
+  align-items: center;
+  gap: var(--e-2);
+  min-height: var(--alvo-min);
+  padding: 0 var(--e-4);
+  border: 2px solid var(--borda-forte);
+  border-radius: var(--raio);
+  background: var(--superficie);
+  cursor: pointer;
+  font-weight: 700;
+  display: inline-flex;
+}
+.opcao-chamada[data-scope-of4pgmnd]:hover {
+  background: var(--superficie-2);
+}
+.opcao-chamada[data-scope-of4pgmnd][data-valor='presente'][aria-pressed='true'] {
+  background: var(--sucesso-suave);
+  border-color: var(--sucesso);
+  color: var(--sucesso);
+}
+.opcao-chamada[data-scope-of4pgmnd][data-valor='falta'][aria-pressed='true'] {
+  background: var(--perigo-suave);
+  border-color: var(--perigo);
+  color: var(--perigo);
+}
+.opcao-chamada[data-scope-of4pgmnd][aria-pressed='false'] svg {
+  opacity: 0.35;
+}
+.aluno[data-scope-of4pgmnd].faltou .aluno-nome[data-scope-of4pgmnd] {
+  text-decoration: line-through 2px;
+}
+.acoes-final[data-scope-of4pgmnd] {
+  margin-top: var(--e-4);
+  justify-content: flex-end;
+  display: flex;
+}
+@media (width<=960px) {
+  .barra-chamada[data-scope-of4pgmnd] {
+    position: static;
+  }
+  #todos-presentes[data-scope-of4pgmnd] {
+    margin-left: 0;
+  }
+}

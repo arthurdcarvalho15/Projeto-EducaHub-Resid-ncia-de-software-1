@@ -1,0 +1,173 @@
+@font-face {
+  font-family: Roboto-fed5e2ce9a9a6099;
+  src: url('/assets/fonts/25be329d3d200f93.woff2') format('woff2');
+  font-display: swap;
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  font-weight: 600;
+  font-style: italic;
+}
+@font-face {
+  font-family: Roboto-fed5e2ce9a9a6099;
+  src: url('/assets/fonts/25be329d3d200f93.woff2') format('woff2');
+  font-display: swap;
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  font-weight: 700;
+  font-style: italic;
+}
+@font-face {
+  font-family: Roboto-fed5e2ce9a9a6099;
+  src: url('/assets/fonts/25be329d3d200f93.woff2') format('woff2');
+  font-display: swap;
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  font-weight: 800;
+  font-style: italic;
+}
+@font-face {
+  font-family: Roboto-fed5e2ce9a9a6099;
+  src: url('/assets/fonts/25be329d3d200f93.woff2') format('woff2');
+  font-display: swap;
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  font-weight: 900;
+  font-style: italic;
+}
+@font-face {
+  font-family: Roboto-fed5e2ce9a9a6099;
+  src: url('/assets/fonts/81458467d34e233f.woff2') format('woff2');
+  font-display: swap;
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: Roboto-fed5e2ce9a9a6099;
+  src: url('/assets/fonts/81458467d34e233f.woff2') format('woff2');
+  font-display: swap;
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: Roboto-fed5e2ce9a9a6099;
+  src: url('/assets/fonts/81458467d34e233f.woff2') format('woff2');
+  font-display: swap;
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: Roboto-fed5e2ce9a9a6099;
+  src: url('/assets/fonts/81458467d34e233f.woff2') format('woff2');
+  font-display: swap;
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Roboto-fed5e2ce9a9a6099 fallback: Arial';
+  src: local('Arial');
+  font-display: swap;
+  font-weight: 600;
+  font-style: italic;
+  size-adjust: 97.0427%;
+  ascent-override: 95.6006%;
+  descent-override: 25.1581%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Roboto-fed5e2ce9a9a6099 fallback: Arial Bold';
+  src: local('Arial Bold');
+  font-display: swap;
+  font-weight: 700;
+  font-style: italic;
+  size-adjust: 90.1322%;
+  ascent-override: 102.9303%;
+  descent-override: 27.0869%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Roboto-fed5e2ce9a9a6099 fallback: Arial Bold';
+  src: local('Arial Bold');
+  font-display: swap;
+  font-weight: 800;
+  font-style: italic;
+  size-adjust: 90.1322%;
+  ascent-override: 102.9303%;
+  descent-override: 27.0869%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Roboto-fed5e2ce9a9a6099 fallback: Arial Bold';
+  src: local('Arial Bold');
+  font-display: swap;
+  font-weight: 900;
+  font-style: italic;
+  size-adjust: 90.1322%;
+  ascent-override: 102.9303%;
+  descent-override: 27.0869%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Roboto-fed5e2ce9a9a6099 fallback: Arial';
+  src: local('Arial');
+  font-display: swap;
+  font-weight: 600;
+  font-style: normal;
+  size-adjust: 97.0427%;
+  ascent-override: 95.6006%;
+  descent-override: 25.1581%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Roboto-fed5e2ce9a9a6099 fallback: Arial Bold';
+  src: local('Arial Bold');
+  font-display: swap;
+  font-weight: 700;
+  font-style: normal;
+  size-adjust: 90.1322%;
+  ascent-override: 102.9303%;
+  descent-override: 27.0869%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Roboto-fed5e2ce9a9a6099 fallback: Arial Bold';
+  src: local('Arial Bold');
+  font-display: swap;
+  font-weight: 800;
+  font-style: normal;
+  size-adjust: 90.1322%;
+  ascent-override: 102.9303%;
+  descent-override: 27.0869%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Roboto-fed5e2ce9a9a6099 fallback: Arial Bold';
+  src: local('Arial Bold');
+  font-display: swap;
+  font-weight: 900;
+  font-style: normal;
+  size-adjust: 90.1322%;
+  ascent-override: 102.9303%;
+  descent-override: 27.0869%;
+  line-gap-override: 0%;
+}
+:root {
+  --font-roboto:
+    Roboto-fed5e2ce9a9a6099, 'Roboto-fed5e2ce9a9a6099 fallback: Arial',
+    'Roboto-fed5e2ce9a9a6099 fallback: Arial Bold', Arial, sans-serif;
+}

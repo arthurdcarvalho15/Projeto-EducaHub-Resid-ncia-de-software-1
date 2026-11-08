@@ -1,0 +1,25 @@
+{
+  "name": "educahub",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "EducaHub — gestão escolar acessível em HTML, CSS e JavaScript puro",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "node tools/server.mjs",
+    "start": "node tools/server.mjs",
+    "build": "node tools/build.mjs",
+    "preview": "node tools/server.mjs --dist",
+    "check": "node tools/check.mjs",
+    "lint": "node tools/check.mjs",
+    "test": "node --test",
+    "format": "prettier --write .",
+    "format:fix": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "prettier": "^3.9.10"
+  }
+}

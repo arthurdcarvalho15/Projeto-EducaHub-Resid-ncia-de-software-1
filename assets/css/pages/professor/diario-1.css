@@ -1,0 +1,27 @@
+.linha-tempo[data-scope-kxgkvf5k] {
+  padding: 0 0 0 var(--e-5);
+  border-left: 3px solid var(--borda);
+  margin: 0;
+  list-style: none;
+}
+.linha-tempo[data-scope-kxgkvf5k] li[data-scope-kxgkvf5k] {
+  padding-bottom: var(--e-5);
+  position: relative;
+}
+.linha-tempo[data-scope-kxgkvf5k] li[data-scope-kxgkvf5k]:before {
+  content: '';
+  left: calc(-1 * var(--e-5) - 9px);
+  background: var(--perfil-professor);
+  border: 3px solid var(--superficie);
+  border-radius: 999px;
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 4px;
+}
+.registro-topo[data-scope-kxgkvf5k] {
+  gap: var(--e-3);
+  margin: 0 0 var(--e-1);
+  flex-wrap: wrap;
+  display: flex;
+}

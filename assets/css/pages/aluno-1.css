@@ -1,0 +1,29 @@
+.indicador[data-scope-n6lbmztg] {
+  align-items: flex-start;
+  gap: var(--e-4);
+  display: flex;
+}
+.indicador[data-scope-n6lbmztg] p[data-scope-n6lbmztg] {
+  margin: 0;
+}
+.indicador-icone[data-scope-n6lbmztg] {
+  border: 2px solid var(--fg);
+  background: var(--cor);
+  width: 52px;
+  height: 52px;
+  color: var(--fg);
+  border-radius: 14px;
+  flex-shrink: 0;
+  place-items: center;
+  display: grid;
+}
+.indicador-rotulo[data-scope-n6lbmztg] {
+  color: var(--texto-suave);
+  font-weight: 700;
+}
+.indicador-valor[data-scope-n6lbmztg] {
+  font-family: var(--fonte-titulo);
+  font-size: var(--texto-2xl);
+  font-weight: 700;
+  line-height: 1.15;
+}

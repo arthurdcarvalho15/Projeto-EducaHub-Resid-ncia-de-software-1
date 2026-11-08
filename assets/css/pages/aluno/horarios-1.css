@@ -1,0 +1,59 @@
+.materia[data-scope-xnf5bk4i] {
+  align-items: center;
+  gap: var(--e-3);
+  font-weight: 700;
+  display: inline-flex;
+}
+.materia-selo[data-scope-xnf5bk4i] {
+  border: 2px solid var(--fg);
+  width: 36px;
+  height: 36px;
+  color: var(--fg);
+  border-radius: 10px;
+  flex-shrink: 0;
+  place-items: center;
+  display: inline-grid;
+}
+.materia-selo[data-scope-xnf5bk4i].compacto {
+  border-radius: 8px;
+  width: 28px;
+  height: 28px;
+}
+.grade-horarios[data-scope-6q6h6usn] th[data-scope-6q6h6usn],
+.grade-horarios[data-scope-6q6h6usn] td[data-scope-6q6h6usn] {
+  min-width: 170px;
+}
+.grade-horarios[data-scope-6q6h6usn] .hora[data-scope-6q6h6usn] {
+  white-space: nowrap;
+  min-width: 140px;
+  color: var(--texto-suave);
+}
+.hoje[data-scope-6q6h6usn] {
+  background: var(--primaria-suave) !important;
+}
+thead[data-scope-6q6h6usn] .hoje[data-scope-6q6h6usn] {
+  box-shadow: inset 0 4px 0 var(--primaria);
+}
+.selo-hoje[data-scope-6q6h6usn] {
+  margin-left: var(--e-2);
+  padding: 0 var(--e-2);
+  background: var(--primaria);
+  color: var(--sobre-primaria);
+  border-radius: 999px;
+}
+.botao-tema[data-scope-l62rlt6s] .icone-sol[data-scope-l62rlt6s] {
+  display: none;
+}
+[data-tema='escuro'] .botao-tema[data-scope-l62rlt6s] .icone-sol[data-scope-l62rlt6s] {
+  display: block;
+}
+[data-tema='escuro'] .botao-tema[data-scope-l62rlt6s] .icone-lua[data-scope-l62rlt6s] {
+  display: none;
+}
+.botao-tema[data-scope-l62rlt6s].claro {
+  color: var(--menu-texto);
+  border-color: #ffffff59;
+}
+.botao-tema[data-scope-l62rlt6s].claro:hover {
+  background: #ffffff1a;
+}

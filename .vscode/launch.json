@@ -1,0 +1,12 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "EducaHub — servidor local",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/tools/server.mjs",
+      "console": "integratedTerminal"
+    }
+  ]
+}

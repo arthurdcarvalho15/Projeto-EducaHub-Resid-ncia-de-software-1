@@ -1,0 +1,16 @@
+.botao-tema[data-scope-l62rlt6s] .icone-sol[data-scope-l62rlt6s] {
+  display: none;
+}
+[data-tema='escuro'] .botao-tema[data-scope-l62rlt6s] .icone-sol[data-scope-l62rlt6s] {
+  display: block;
+}
+[data-tema='escuro'] .botao-tema[data-scope-l62rlt6s] .icone-lua[data-scope-l62rlt6s] {
+  display: none;
+}
+.botao-tema[data-scope-l62rlt6s].claro {
+  color: var(--menu-texto);
+  border-color: #ffffff59;
+}
+.botao-tema[data-scope-l62rlt6s].claro:hover {
+  background: #ffffff1a;
+}

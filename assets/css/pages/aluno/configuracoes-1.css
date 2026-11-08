@@ -1,0 +1,103 @@
+.grupo[data-scope-kvhlo7is] {
+  margin: 0 0 var(--e-5);
+  border: 0;
+  padding: 0;
+}
+.grupo[data-scope-kvhlo7is] legend[data-scope-kvhlo7is] {
+  margin-bottom: var(--e-2);
+}
+.opcoes-lado[data-scope-kvhlo7is] {
+  gap: var(--e-2);
+  flex-wrap: wrap;
+  display: flex;
+}
+.escolha[data-scope-kvhlo7is] {
+  align-items: center;
+  gap: var(--e-2);
+  min-height: var(--alvo-min);
+  padding: var(--e-2) var(--e-4);
+  border: 2px solid var(--borda);
+  border-radius: var(--raio);
+  cursor: pointer;
+  font-weight: 700;
+  display: inline-flex;
+}
+.escolha[data-scope-kvhlo7is]:has(input:checked) {
+  border-color: var(--primaria);
+  background: var(--primaria-suave);
+}
+.escolha[data-scope-kvhlo7is] input[data-scope-kvhlo7is],
+.interruptor[data-scope-kvhlo7is] input[data-scope-kvhlo7is] {
+  width: 22px;
+  height: 22px;
+  accent-color: var(--primaria);
+  flex-shrink: 0;
+}
+.amostra[data-scope-kvhlo7is] {
+  border: 2px solid var(--fg--40);
+  border-radius: 8px;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  display: grid;
+}
+.amostra-clara[data-scope-kvhlo7is] {
+  color: #120c07;
+  background: #f9f3ec;
+}
+.amostra-escura[data-scope-kvhlo7is] {
+  color: #f9f3ec;
+  background: #120c07;
+}
+.interruptor[data-scope-kvhlo7is] {
+  align-items: flex-start;
+  gap: var(--e-3);
+  min-height: var(--alvo-min);
+  padding: var(--e-3) var(--e-4);
+  border: 2px solid var(--borda);
+  border-radius: var(--raio);
+  cursor: pointer;
+  display: flex;
+}
+.interruptor[data-scope-kvhlo7is] input[data-scope-kvhlo7is] {
+  margin-top: 2px;
+}
+.bloco[data-scope-kvhlo7is] {
+  display: block;
+}
+.perfil-linha[data-scope-kvhlo7is] {
+  align-items: center;
+  gap: var(--e-4);
+  margin-bottom: var(--e-4);
+  display: flex;
+}
+.avatar-grande[data-scope-kvhlo7is] {
+  border: 2px solid var(--fg);
+  width: 64px;
+  height: 64px;
+  color: var(--fg);
+  font-family: var(--fonte-titulo);
+  font-size: var(--texto-lg);
+  border-radius: 999px;
+  place-items: center;
+  font-weight: 700;
+  display: grid;
+}
+.dados[data-scope-kvhlo7is] {
+  gap: var(--e-3);
+  margin: 0 0 var(--e-4);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+  display: grid;
+}
+.dados[data-scope-kvhlo7is] div[data-scope-kvhlo7is] {
+  padding: var(--e-3);
+  border-radius: var(--raio-sm);
+  background: var(--superficie-2);
+}
+.dados[data-scope-kvhlo7is] dt[data-scope-kvhlo7is] {
+  color: var(--texto-suave);
+}
+.dados[data-scope-kvhlo7is] dd[data-scope-kvhlo7is] {
+  margin: 0;
+  font-weight: 700;
+}

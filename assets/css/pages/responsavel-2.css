@@ -1,0 +1,25 @@
+.aba-alerta[data-scope-naxassly] {
+  background: var(--error--bg);
+  min-width: 24px;
+  height: 24px;
+  color: var(--dark);
+  border-radius: 999px;
+  place-items: center;
+  padding: 0 6px;
+  font-size: 0.875rem;
+  display: grid;
+}
+[data-tema='escuro'] .aba-alerta[data-scope-naxassly] {
+  color: var(--light);
+}
+.linha-media[data-scope-naxassly] {
+  align-items: center !important;
+}
+.linha-media[data-scope-naxassly] > .materia {
+  flex: 1;
+}
+.card[data-scope-naxassly] > h2[data-scope-naxassly] {
+  align-items: center;
+  gap: var(--e-2);
+  display: flex;
+}

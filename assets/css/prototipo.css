@@ -1,0 +1,67 @@
+.prototipo-card {
+  margin-block: 1rem;
+  padding: 1.5rem;
+}
+.prototipo-card h2,
+.prototipo-card h3 {
+  margin-top: 0;
+}
+.prototipo-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 1rem;
+  align-items: end;
+}
+.prototipo-form-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: end;
+}
+.prototipo-form label,
+.prototipo-form-inline label {
+  display: grid;
+  gap: 0.35rem;
+}
+.prototipo-form input,
+.prototipo-form select,
+.prototipo-form textarea,
+.prototipo-form-inline input,
+.prototipo-card select,
+.observacao-aluno input {
+  width: 100%;
+  min-height: 2.6rem;
+  border: 1px solid var(--borda, #889);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  color: var(--fg);
+  background: var(--bg, #fff);
+  font: inherit;
+}
+.prototipo-card ul {
+  padding-left: 1.5rem;
+}
+.prototipo-card li {
+  margin-block: 0.5rem;
+}
+.prototipo-card li button {
+  margin-left: 0.75rem;
+}
+.observacao-aluno {
+  display: grid;
+  gap: 0.25rem;
+  min-width: min(15rem, 100%);
+}
+.selecao-multipla {
+  border: 1px solid var(--borda, #889);
+  border-radius: 0.5rem;
+  padding: 0.7rem;
+}
+.selecao-multipla label {
+  display: block;
+  margin: 0.35rem 0;
+}
+.selecao-multipla input {
+  width: auto;
+  margin-right: 0.35rem;
+}

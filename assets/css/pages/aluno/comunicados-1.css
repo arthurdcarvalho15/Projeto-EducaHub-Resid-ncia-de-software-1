@@ -1,0 +1,73 @@
+.publicar[data-scope-y2vihof7] summary[data-scope-y2vihof7] {
+  align-items: center;
+  gap: var(--e-2);
+  min-height: var(--alvo-min);
+  cursor: pointer;
+  font-weight: 700;
+  display: flex;
+}
+.publicar[data-scope-y2vihof7] form[data-scope-y2vihof7] {
+  margin-top: var(--e-4);
+}
+.comunicados[data-scope-y2vihof7] {
+  gap: var(--e-4);
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+}
+.comunicado[data-scope-y2vihof7] h2[data-scope-y2vihof7] {
+  font-size: var(--texto-md);
+  margin: var(--e-3) 0 var(--e-2);
+}
+.comunicado-topo[data-scope-y2vihof7] {
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--e-2);
+  flex-wrap: wrap;
+  display: flex;
+}
+.origem[data-scope-y2vihof7] {
+  align-items: center;
+  gap: var(--e-2);
+  padding: 2px var(--e-3);
+  color: var(--info);
+  background: var(--info-suave);
+  border: 1.5px solid;
+  border-radius: 999px;
+  font-weight: 700;
+  display: inline-flex;
+}
+.origem-secretaria[data-scope-y2vihof7] {
+  color: var(--perfil-secretaria);
+  background: color-mix(in srgb, var(--perfil-secretaria) 12%, var(--superficie));
+}
+.origem-escola[data-scope-y2vihof7] {
+  color: var(--perfil-escola);
+  background: color-mix(in srgb, var(--perfil-escola) 12%, var(--superficie));
+}
+.origem-turma[data-scope-y2vihof7] {
+  color: var(--perfil-responsavel);
+  background: color-mix(in srgb, var(--perfil-responsavel) 12%, var(--superficie));
+}
+[data-tema='escuro'] .origem[data-scope-y2vihof7] {
+  color: var(--texto);
+  background: var(--superficie-2);
+}
+.botao-tema[data-scope-l62rlt6s] .icone-sol[data-scope-l62rlt6s] {
+  display: none;
+}
+[data-tema='escuro'] .botao-tema[data-scope-l62rlt6s] .icone-sol[data-scope-l62rlt6s] {
+  display: block;
+}
+[data-tema='escuro'] .botao-tema[data-scope-l62rlt6s] .icone-lua[data-scope-l62rlt6s] {
+  display: none;
+}
+.botao-tema[data-scope-l62rlt6s].claro {
+  color: var(--menu-texto);
+  border-color: #ffffff59;
+}
+.botao-tema[data-scope-l62rlt6s].claro:hover {
+  background: #ffffff1a;
+}

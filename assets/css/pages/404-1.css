@@ -1,0 +1,17 @@
+.nao-encontrada[data-scope-ibpinaeu] {
+  justify-content: center;
+  align-items: center;
+  gap: var(--e-3);
+  min-height: 100vh;
+  padding: var(--e-5);
+  text-align: center;
+  flex-direction: column;
+  display: flex;
+}
+.codigo[data-scope-ibpinaeu] {
+  margin: var(--e-5) 0 0;
+  color: var(--primaria);
+  font-size: 6rem;
+  font-weight: 700;
+  line-height: 1;
+}

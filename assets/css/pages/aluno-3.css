@@ -1,0 +1,9 @@
+.aula[data-scope-mnh4c7ra] {
+  align-items: center !important;
+}
+.aula-hora[data-scope-mnh4c7ra] {
+  min-width: 8.5rem;
+}
+.lista[data-scope-mnh4c7ra] p[data-scope-mnh4c7ra] + .status {
+  margin-top: var(--e-1);
+}

@@ -1,0 +1,192 @@
+.cabecalho[data-scope-houjjtai] {
+  z-index: 40;
+  padding: 10px var(--side-padding);
+  background-color: rgb(from var(--fg--90) r g b / 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 2px solid var(--fg--80);
+  position: sticky;
+  top: 0;
+}
+.cabecalho-nav[data-scope-houjjtai] {
+  align-items: center;
+  gap: var(--e-5);
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+}
+.cabecalho-logo[data-scope-houjjtai] {
+  text-decoration: none;
+}
+.cabecalho-links[data-scope-houjjtai] {
+  gap: var(--e-2);
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  display: flex;
+}
+.cabecalho-links[data-scope-houjjtai] a[data-scope-houjjtai] {
+  min-height: var(--alvo-min);
+  padding: 0 var(--e-3);
+  border-radius: var(--raio-pilula);
+  color: var(--fg);
+  font-family: var(--fonte-titulo);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  align-items: center;
+  font-weight: 800;
+  text-decoration: none;
+  display: inline-flex;
+}
+.cabecalho-links[data-scope-houjjtai] a[data-scope-houjjtai]:hover {
+  background: var(--fg--90);
+  text-decoration: underline;
+  text-decoration-color: var(--secondary);
+  text-decoration-thickness: 3px;
+}
+.cabecalho-acoes[data-scope-houjjtai] {
+  align-items: center;
+  gap: var(--e-2);
+  margin-left: auto;
+  display: flex;
+}
+@media (width<=760px) {
+  .cabecalho-links[data-scope-houjjtai] {
+    display: none;
+  }
+}
+@media (width<=420px) {
+  .cabecalho-logo[data-scope-houjjtai] .logo-nome {
+    display: none;
+  }
+}
+main[data-scope-houjjtai]:focus {
+  outline: none;
+}
+.rodape-site[data-scope-houjjtai] {
+  z-index: 20;
+  padding: 10rem var(--side-padding) 1.5rem;
+  background-color: var(--primary-darker);
+  color: var(--light);
+  -webkit-mask-image: var(--footerMask);
+  mask-image: var(--footerMask);
+  position: relative;
+  overflow: hidden;
+  mask-position: top;
+  mask-size: 100% 1820px;
+  mask-repeat: no-repeat;
+}
+[data-tema='escuro'] .rodape-site[data-scope-houjjtai] {
+  background-color: #0f2a4d;
+}
+.rodape-site[data-scope-houjjtai]:before {
+  content: '';
+  background-color: var(--light);
+  opacity: 0.12;
+  -webkit-mask-image: var(--footerPattern);
+  mask-image: var(--footerPattern);
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  mask-position: 0 100%;
+  mask-repeat: repeat;
+}
+.rodape-site[data-scope-houjjtai] a[data-scope-houjjtai] {
+  color: var(--light);
+}
+.rodape-site[data-scope-houjjtai] [data-scope-houjjtai]:focus-visible {
+  outline-color: var(--light);
+}
+.rodape-site[data-scope-houjjtai] svg {
+  fill: currentColor;
+  color: inherit;
+}
+.footer__content[data-scope-houjjtai] {
+  z-index: 1;
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+  align-items: start;
+  gap: 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  position: relative;
+}
+.footer__brand[data-scope-houjjtai],
+.footer__actions[data-scope-houjjtai],
+.footer__contact[data-scope-houjjtai],
+.footer__nav[data-scope-houjjtai] ul[data-scope-houjjtai] {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  display: flex;
+}
+.footer__nav[data-scope-houjjtai] ul[data-scope-houjjtai],
+.footer__social[data-scope-houjjtai] {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.footer__social[data-scope-houjjtai] {
+  gap: 1rem;
+  display: flex;
+}
+.footer__social[data-scope-houjjtai] a[data-scope-houjjtai] {
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  transition: transform 0.2s;
+  display: grid;
+}
+.footer__social[data-scope-houjjtai] a[data-scope-houjjtai]:hover,
+.footer__social[data-scope-houjjtai] a[data-scope-houjjtai]:focus-visible {
+  transform: scale(1.15);
+}
+.footer__social[data-scope-houjjtai] svg {
+  width: 40px;
+  height: 40px;
+}
+.footer__nav[data-scope-houjjtai] a[data-scope-houjjtai],
+.footer__actions[data-scope-houjjtai] a[data-scope-houjjtai],
+.footer__contact[data-scope-houjjtai] a[data-scope-houjjtai] {
+  min-height: var(--alvo-min);
+  font-family: var(--fonte-titulo);
+  font-size: var(--texto-md);
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  display: inline-flex;
+}
+.footer__contact[data-scope-houjjtai] {
+  font-style: normal;
+}
+.footer__contact[data-scope-houjjtai] h2[data-scope-houjjtai] {
+  color: var(--light);
+  font-size: var(--texto-lg);
+  margin: 0;
+}
+.footer__icon[data-scope-houjjtai] {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  display: block;
+}
+.footer__icon[data-scope-houjjtai] svg {
+  width: 100%;
+  height: 100%;
+}
+#copyright[data-scope-houjjtai] {
+  z-index: 1;
+  max-width: 1280px;
+  margin: 2.5rem auto 0;
+  position: relative;
+}
+@media (width<=1278px) {
+  .rodape-site[data-scope-houjjtai] {
+    mask-size: 150% 1820px;
+  }
+}
+@media (width<=626px) {
+  .rodape-site[data-scope-houjjtai] {
+    padding-top: 7rem;
+    mask-size: 220% 1820px;
+  }
+}
