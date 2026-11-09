@@ -43,6 +43,7 @@ if (basePath) {
         content = content.replace(absolutePath, `$1${basePath}/`);
         if (entry.name.endsWith('.html')) {
           content = content.replaceAll('href="/"', `href="${basePath}/"`);
+          content = content.replaceAll('href="/#', `href="${basePath}/#`);
           if (process.env.PAGES_ORIGIN)
             content = content.replaceAll(
               'http://localhost:4321',
