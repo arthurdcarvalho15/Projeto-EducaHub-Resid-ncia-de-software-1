@@ -841,3 +841,21 @@
   flex-shrink: 0;
   margin-top: 3px;
 }
+#identificacao-aluno[hidden],
+#form-matricula[hidden] {
+  display: none !important;
+}
+
+#identificacao-aluno .acoes {
+  margin-block: 1rem;
+}
+
+#identificacao-aluno .acoes a {
+  margin-top: 0;
+}
+
+#identificacao-aluno :is(a, button):focus-visible,
+#form-matricula #alterar-cpf:focus-visible {
+  outline: 3px dashed var(--secondary);
+  outline-offset: 4px;
+}

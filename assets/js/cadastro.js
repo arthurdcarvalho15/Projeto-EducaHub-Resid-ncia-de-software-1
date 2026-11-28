@@ -1,23 +1,176 @@
 import { cpfValidator } from './utils/cpfValidator.js';
 import { formatarCpf, definirErro, idadeNaData } from './formularios.js';
+import { alunoCadastrado, normalizarCpf } from './services/alunos.js';
+import { consumirCpfPreMatricula } from './services/pre-matricula.js';
+import { concluirSolicitacao, anonimizarNome, mascararCpf } from './services/solicitacoes.js';
+import { configurarOferta } from './pages/aluno/oferta-matricula.js';
+import { prepararComprovante } from './components/ComprovanteAluno.js';
+import { carregarOfertas } from './services/ofertas-escolares.js';
 
 const form = document.getElementById('form-matricula');
 const campos = form.elements;
 const status = document.getElementById('cadastro-status');
-let atual = 'aluno';
+let atual = 'escolar';
 let enviando = false;
-let buscaCep = 0;
-let buscaCidade = 0;
+let cpfVerificado = '';
+const identificacao = document.getElementById('identificacao-aluno');
+const verificar = document.getElementById('form-verificar-cpf');
+const cpfIdentificacao = verificar.elements.cpf;
+const resultadoCpf = document.getElementById('resultado-cpf');
+const mensagemCpf = document.getElementById('mensagem-cpf');
+const iniciar = document.getElementById('iniciar-pre-matricula');
+const erroCpf = 'CPF inválido. Verifique os números informados e tente novamente.';
+const oferta = configurarOferta(form);
+const comprovante = prepararComprovante(() => {
+  informarOutroCpf();
+  definirErro(
+    cpfIdentificacao,
+    'Não foi possível localizar uma solicitação válida para este comprovante.',
+  );
+});
+
+function exibirResultado(cadastrado) {
+  verificar.hidden = true;
+  resultadoCpf.hidden = false;
+  mensagemCpf.textContent = cadastrado
+    ? 'Identificamos que já existe um cadastro associado ao CPF informado.'
+    : 'Não encontramos um cadastro associado ao CPF informado. Você poderá iniciar sua pré-matrícula.';
+  document.getElementById('acessar-conta').hidden = !cadastrado;
+  document.getElementById('recuperar-acesso').hidden = !cadastrado;
+  iniciar.hidden = cadastrado;
+  mensagemCpf.focus();
+}
+
+function informarOutroCpf() {
+  cpfVerificado = '';
+  enviando = false;
+  comprovante.limpar();
+  window.history.replaceState(null, '', window.location.pathname);
+  form.reset();
+  oferta.reiniciar();
+  form.querySelector('.etapas').hidden = false;
+  form.hidden = true;
+  form.querySelectorAll('[data-etapa]').forEach((etapa) => {
+    etapa.disabled = true;
+  });
+  form.querySelectorAll('[aria-invalid]').forEach((campo) => definirErro(campo, ''));
+  atualizarCondicionais();
+  identificacao.hidden = false;
+  verificar.hidden = false;
+  resultadoCpf.hidden = true;
+  cpfIdentificacao.value = '';
+  definirErro(cpfIdentificacao, '');
+  cpfIdentificacao.focus();
+}
+document.getElementById('nova-solicitacao').addEventListener('click', informarOutroCpf);
+
+cpfIdentificacao.addEventListener('input', () => {
+  cpfIdentificacao.value = formatarCpf(cpfIdentificacao.value);
+  definirErro(cpfIdentificacao, '');
+});
+function identificarCpf() {
+  if (!cpfValidator(cpfIdentificacao.value)) {
+    definirErro(cpfIdentificacao, erroCpf);
+    cpfIdentificacao.focus();
+    return;
+  }
+  try {
+    const cadastrado = alunoCadastrado(cpfIdentificacao.value);
+    cpfVerificado = cadastrado ? '' : normalizarCpf(cpfIdentificacao.value);
+    exibirResultado(cadastrado);
+  } catch {
+    definirErro(
+      cpfIdentificacao,
+      'Não foi possível consultar os registros locais. Tente novamente.',
+    );
+    cpfIdentificacao.focus();
+  }
+}
+verificar.addEventListener('submit', (event) => {
+  event.preventDefault();
+  identificarCpf();
+});
+document.getElementById('outro-cpf').addEventListener('click', informarOutroCpf);
+document.getElementById('alterar-cpf').addEventListener('click', informarOutroCpf);
+
+function conferirCpf() {
+  if (!cpfValidator(cpfVerificado) || normalizarCpf(campos.cpf.value) !== cpfVerificado) {
+    informarOutroCpf();
+    definirErro(
+      cpfIdentificacao,
+      'Não foi possível identificar o aluno. Retorne à etapa de verificação do CPF.',
+    );
+    return false;
+  }
+  try {
+    if (!alunoCadastrado(cpfVerificado)) return true;
+    form.hidden = true;
+    identificacao.hidden = false;
+    cpfVerificado = '';
+    exibirResultado(true);
+  } catch {
+    if (form.hidden) {
+      iniciar.hidden = true;
+      mensagemCpf.textContent =
+        'Não foi possível consultar os registros locais. Informe o CPF novamente.';
+      mensagemCpf.focus();
+    } else informar('⚠ Não foi possível consultar os registros locais. Tente novamente.');
+  }
+  return false;
+}
+
+function iniciarPreMatricula() {
+  campos.cpf.value = formatarCpf(cpfVerificado);
+  if (!conferirCpf()) return;
+  identificacao.hidden = true;
+  form.hidden = false;
+  document.getElementById('cpf-escolar').textContent = mascararCpf(cpfVerificado);
+  mostrarEtapa('escolar');
+}
+iniciar.addEventListener('click', iniciarPreMatricula);
 const menor = () => {
   const idade = idadeNaData(campos.dataNascimento.value);
   return idade !== null && idade < 18;
 };
-const sequencia = () => (menor() ? ['aluno', 'responsavel', 'endereco'] : ['aluno', 'endereco']);
+const sequencia = () =>
+  menor()
+    ? ['escolar', 'aluno', 'responsavel', 'endereco', 'revisao']
+    : ['escolar', 'aluno', 'endereco', 'revisao'];
 const informar = (mensagem) => {
   status.textContent = mensagem;
 };
 
 function mostrarEtapa(nome) {
+  if (nome === 'revisao') {
+    let escolar;
+    try {
+      escolar = oferta.descricao();
+    } catch {
+      mostrarEtapa('escolar');
+      oferta.validar();
+      informar('⚠ Confira as ofertas escolares antes de revisar a solicitação.');
+      return;
+    }
+    const resumo = document.getElementById('resumo-solicitacao');
+    resumo.replaceChildren();
+    for (const [rotulo, valor] of Object.entries({
+      Aluno: anonimizarNome(campos.nomeCompleto.value),
+      CPF: mascararCpf(cpfVerificado),
+      'Ano letivo': escolar.anoLetivo,
+      Série: escolar.serie,
+      Município: escolar.municipio,
+      Escola: escolar.escola,
+      Turno: escolar.turno,
+    })) {
+      const grupo = document.createElement('div');
+      const dt = document.createElement('dt');
+      const dd = document.createElement('dd');
+      dt.textContent = rotulo;
+      dd.textContent = String(valor);
+      grupo.append(dt, dd);
+      resumo.append(grupo);
+    }
+  }
   atual = nome;
   form.querySelectorAll('[data-etapa]').forEach((etapa) => {
     etapa.hidden = etapa.dataset.etapa !== nome;
@@ -33,6 +186,15 @@ function mostrarEtapa(nome) {
 }
 
 function validarEtapa(nome) {
+  if (!conferirCpf()) return false;
+  if (nome === 'escolar') {
+    const ok = oferta.validar();
+    if (!ok)
+      informar(
+        '⚠ Preencha todos os campos obrigatórios para continuar. Confira a compatibilidade da escola e do turno.',
+      );
+    return ok;
+  }
   let primeiro;
   for (const campo of form.querySelectorAll(
     `[data-etapa="${nome}"] input, [data-etapa="${nome}"] select`,
@@ -98,7 +260,6 @@ form.addEventListener('input', (event) => {
   definirErro(campo, '');
   if (/cpf$/i.test(campo.name)) campo.value = formatarCpf(campo.value);
   if (campo.name === 'cep') {
-    buscaCep++;
     campo.value = campo.value
       .replace(/\D/g, '')
       .slice(0, 8)
@@ -130,27 +291,44 @@ form.addEventListener('submit', (event) => {
   event.preventDefault();
   if (enviando) return;
   // Enter inside an earlier step advances instead of submitting incomplete data.
-  if (atual !== 'endereco') {
+  if (atual !== 'revisao') {
     if (validarEtapa(atual)) mostrarEtapa(sequencia()[sequencia().indexOf(atual) + 1]);
     return;
   }
   for (const etapa of sequencia()) {
     if (!validarEtapa(etapa)) {
+      if (form.hidden) return;
       mostrarEtapa(etapa);
       validarEtapa(etapa);
       return;
     }
   }
   enviando = true;
-  form.querySelectorAll('[data-etapa], .etapas').forEach((el) => {
-    el.hidden = true;
-  });
-  informar('');
-  document.getElementById('protocolo').textContent =
-    `${new Date().getFullYear()}-${crypto.randomUUID().slice(0, 8).toUpperCase()}`;
-  const concluido = document.getElementById('cadastro-concluido');
-  concluido.hidden = false;
-  concluido.focus();
+  const confirmar = document.getElementById('confirmar-solicitacao');
+  confirmar.disabled = true;
+  confirmar.setAttribute('aria-busy', 'true');
+  try {
+    const solicitacao = concluirSolicitacao({
+      cpf: cpfVerificado,
+      nome: campos.nomeCompleto.value,
+      selecao: oferta.selecao(),
+    });
+    window.history.replaceState(
+      null,
+      '',
+      `#comprovante=${encodeURIComponent(solicitacao.protocolo)}`,
+    );
+    if (!comprovante.mostrar(solicitacao.protocolo))
+      throw new Error('Não foi possível exibir o comprovante da solicitação.');
+  } catch (error) {
+    enviando = false;
+    informar(
+      `⚠ ${error.message || 'Não foi possível salvar a pré-matrícula neste navegador. Tente novamente.'}`,
+    );
+  } finally {
+    confirmar.disabled = false;
+    confirmar.setAttribute('aria-busy', 'false');
+  }
 });
 
 const ufs = [
@@ -205,54 +383,26 @@ lista(
   'lista-paises',
   [...new Set(paises)].sort((a, b) => a.localeCompare(b, 'pt-BR')),
 );
-async function consultar(url) {
-  const response = await fetch(url, { signal: AbortSignal.timeout(8000) });
-  if (!response.ok) throw new Error('Serviço indisponível');
-  return response.json();
-}
-campos.estadoNatal.addEventListener('change', async () => {
+campos.estadoNatal.addEventListener('change', () => {
   const uf = campos.estadoNatal.value.toUpperCase();
-  const pedido = ++buscaCidade;
   campos.naturalidade.value = '';
-  lista('lista-cidades', []);
-  if (!ufs.includes(uf)) return;
-  try {
-    const cidades = await consultar(
-      `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios`,
-    );
-    if (pedido === buscaCidade)
-      lista(
-        'lista-cidades',
-        cidades.map((c) => c.nome),
-      );
-  } catch {
-    if (pedido === buscaCidade)
-      informar('⚠ Não foi possível consultar as cidades. Digite a cidade natal manualmente.');
-  }
-});
-campos.cep.addEventListener('blur', async () => {
-  const cep = campos.cep.value.replace(/\D/g, '');
-  if (cep.length !== 8) return;
-  const pedido = ++buscaCep;
-  informar('Consultando CEP…');
-  try {
-    const endereco = await consultar(`https://brasilapi.com.br/api/cep/v2/${cep}`);
-    if (pedido !== buscaCep) return;
-    for (const [campo, valor] of Object.entries({
-      estadoResidencial: endereco.state,
-      municipioResidencial: endereco.city,
-      bairroResidencial: endereco.neighborhood,
-      logradouro: endereco.street,
-    })) {
-      campos[campo].value = valor || '';
-      definirErro(campos[campo], '');
-    }
-    informar('✓ Endereço consultado. Confira os dados e complete os campos restantes.');
-  } catch {
-    if (pedido === buscaCep)
-      informar(
-        '⚠ Não foi possível consultar o CEP. Confira o número ou preencha o endereço manualmente.',
-      );
-  }
+  const municipios =
+    uf === 'SE' ? [...new Set(carregarOfertas().escolas.map((escola) => escola.municipio))] : [];
+  lista('lista-cidades', municipios);
 });
 atualizarCondicionais();
+const cpfRecebido = consumirCpfPreMatricula();
+if (cpfRecebido) {
+  window.history.replaceState(null, '', window.location.pathname);
+  cpfIdentificacao.value = formatarCpf(cpfRecebido);
+  identificarCpf();
+  if (cpfVerificado) iniciarPreMatricula();
+} else {
+  const protocolo = new URLSearchParams(window.location.hash.slice(1)).get('comprovante');
+  if (protocolo && !comprovante.mostrar(protocolo)) {
+    definirErro(
+      cpfIdentificacao,
+      'Não foi possível localizar uma solicitação válida para este comprovante.',
+    );
+  }
+}

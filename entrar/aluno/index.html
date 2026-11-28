@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="/assets/css/Landing.css" />
     <script src="/assets/js/tema-inicial.js"></script>
     <link rel="stylesheet" href="/assets/css/formularios.css" />
+    <link rel="stylesheet" href="/assets/css/pages/login-aluno.css" />
   </head>
   <body class="fundo-caderno">
     <a class="pular-conteudo" href="#conteudo" data-scope-houjjtai>Pular para o conteúdo</a>
@@ -194,13 +195,18 @@
             </div>
           </div>
           <h1 id="titulo-login" data-scope-htjgclhl>Entrar</h1>
-          <p class="subtitulo" data-scope-htjgclhl>
-            Acesse com o CPF e a senha cadastrados na sua escola.
-          </p>
-          <form data-login data-destino="/aluno/" class="_form_5z322_15" novalidate="">
-            <div aria-live="polite" aria-atomic="true"></div>
+          <p class="subtitulo" data-scope-htjgclhl>Informe o CPF do aluno para continuar.</p>
+          <form
+            data-login-aluno
+            data-destino="/aluno/"
+            data-cpf-demo="52998224725"
+            data-senha-demo="demo1234"
+            class="_form_5z322_15"
+            novalidate=""
+          >
+            <div id="aluno-login-status" role="status" aria-live="polite" aria-atomic="true"></div>
             <div class="_campo_5z322_32">
-              <label for="login-cpf" class="_label_5z322_38">CPF</label
+              <label for="login-cpf" class="_label_5z322_38">CPF do aluno</label
               ><input
                 id="login-cpf"
                 type="text"
@@ -211,10 +217,11 @@
                 aria-invalid="false"
                 class="_input_5z322_43"
                 name="cpf"
-                value="529.982.247-25"
+                required
+                disabled
               />
             </div>
-            <div class="_campo_5z322_32">
+            <div id="aluno-etapa-senha" class="_campo_5z322_32" hidden>
               <label for="login-senha" class="_label_5z322_38">Senha</label>
               <div class="_senhaWrap_5z322_77">
                 <input
@@ -224,7 +231,8 @@
                   aria-invalid="false"
                   class="_input_5z322_43 _inputSenha_5z322_81"
                   name="senha"
-                  value="demo1234"
+                  disabled
+                  minlength="4"
                 /><button
                   type="button"
                   class="_olho_5z322_85"
@@ -241,12 +249,38 @@
                 </button>
               </div>
             </div>
-            <a href="/recuperar-senha/" class="_esqueci_5z322_149">Esqueci minha senha</a
-            ><button type="submit" class="_entrar_5z322_164" aria-busy="false">Entrar</button>
+            <a id="aluno-recuperar" href="/recuperar-senha/" class="_esqueci_5z322_149" hidden
+              >Esqueci minha senha</a
+            >
+            <button
+              id="aluno-continuar"
+              type="submit"
+              class="_entrar_5z322_164"
+              aria-busy="false"
+              disabled
+            >
+              Verificar CPF
+            </button>
+            <section id="aluno-sem-cadastro" aria-labelledby="aluno-pergunta-matricula" hidden>
+              <h2 id="aluno-pergunta-matricula" tabindex="-1">Deseja fazer sua pré-matrícula?</h2>
+              <p>
+                Não encontramos um cadastro associado ao CPF informado. Você poderá iniciar sua
+                pré-matrícula.
+              </p>
+              <button id="aluno-pre-matricula" type="button" class="_entrar_5z322_164">
+                Sim, iniciar pré-matrícula
+              </button>
+            </section>
+            <button id="aluno-outro-cpf" type="button" class="_esqueci_5z322_149" hidden>
+              Informar outro CPF
+            </button>
             <p class="_ajuda_5z322_188">
               Primeiro acesso ou problemas para entrar? Procure a secretaria da sua escola.
             </p>
           </form>
+          <noscript
+            >Ative o JavaScript para verificar o CPF e continuar o acesso simulado.</noscript
+          >
           <p class="demo" data-scope-htjgclhl>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -265,8 +299,9 @@
               <path d="M12 16v-4M12 8h.01" />
             </svg>
             <span data-scope-htjgclhl>
-              <strong data-scope-htjgclhl>Demonstração:</strong> CPF e senha já estão preenchidos. É
-              só clicar em <strong data-scope-htjgclhl>Entrar</strong>.
+              <strong data-scope-htjgclhl>Demonstração:</strong> CPF fictício e senha já
+              preenchidos. Clique em Entrar para acessar o sistema simulado ou em Informar outro CPF
+              para testar a identificação e a pré-matrícula.
             </span>
           </p>
         </section>
@@ -669,6 +704,6 @@
     </div>
     <div id="avisos" class="avisos" aria-live="polite"></div>
     <script type="module" src="/assets/js/app.js"></script>
-    <script type="module" src="/assets/js/login.js"></script>
+    <script type="module" src="/assets/js/pages/login-aluno.js"></script>
   </body>
 </html>

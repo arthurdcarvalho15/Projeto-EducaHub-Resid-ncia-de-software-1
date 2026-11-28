@@ -1,0 +1,17 @@
+[data-login-aluno] [hidden] {
+  display: none !important;
+}
+
+[data-login-aluno] #aluno-outro-cpf {
+  background: transparent;
+  border: 2px solid currentColor;
+  border-radius: 12px;
+  padding: 10px 16px;
+  font: inherit;
+  cursor: pointer;
+}
+
+[data-login-aluno] #aluno-sem-cadastro {
+  display: grid;
+  gap: 16px;
+}

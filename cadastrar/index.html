@@ -39,6 +39,7 @@
     <meta name="theme-color" content="#2369bf" />
     <link rel="stylesheet" href="/assets/css/perfis.css" />
     <link rel="stylesheet" href="/assets/css/cadastrar.css" />
+    <link rel="stylesheet" href="/assets/css/pages/comprovante-aluno.css" />
     <link rel="stylesheet" href="/assets/css/pages/index-4.css" />
     <link rel="stylesheet" href="/assets/css/Landing.css" />
     <script src="/assets/js/tema-inicial.js"></script>
@@ -157,14 +158,107 @@
           </p>
         </header>
         <section class="cartao" aria-label="Formulário de matrícula" data-scope-senimhyn>
-          <form class="matricula" id="form-matricula" novalidate>
+          <section
+            id="identificacao-aluno"
+            class="matricula"
+            aria-labelledby="titulo-identificacao"
+          >
+            <h2 id="titulo-identificacao" tabindex="-1">Identificação do aluno</h2>
+            <p id="orientacao-cpf">
+              Informe o CPF do aluno, mesmo que você seja o responsável pela matrícula.
+            </p>
+            <p>
+              Consulta apenas aos registros simulados deste navegador. Não é uma consulta à Receita
+              Federal.
+            </p>
+            <form id="form-verificar-cpf" class="matricula" novalidate>
+              <div class="campo">
+                <label for="cpf-identificacao">CPF do aluno *</label>
+                <input
+                  id="cpf-identificacao"
+                  name="cpf"
+                  type="text"
+                  required
+                  inputmode="numeric"
+                  maxlength="14"
+                  placeholder="000.000.000-00"
+                  aria-describedby="orientacao-cpf"
+                />
+              </div>
+              <div class="acoes">
+                <a class="voltar-inicio" href="/">Voltar ao início</a>
+                <button type="submit">Verificar CPF</button>
+              </div>
+            </form>
+            <section id="resultado-cpf" hidden aria-labelledby="mensagem-cpf">
+              <h3 id="mensagem-cpf" tabindex="-1"></h3>
+              <div class="acoes">
+                <a id="acessar-conta" class="voltar-inicio" href="/entrar/aluno/" hidden
+                  >Acessar minha conta</a
+                >
+                <a id="recuperar-acesso" class="voltar-inicio" href="/recuperar-senha/" hidden
+                  >Recuperar acesso</a
+                >
+                <button id="iniciar-pre-matricula" type="button" hidden>
+                  Iniciar pré-matrícula
+                </button>
+                <button id="outro-cpf" type="button">Informar outro CPF</button>
+              </div>
+            </section>
+          </section>
+          <noscript
+            >Ative o JavaScript para verificar o CPF e iniciar a pré-matrícula simulada.</noscript
+          >
+          <form class="matricula" id="form-matricula" novalidate hidden>
             <ol class="etapas" aria-label="Etapas da matrícula">
-              <li data-indicador="aluno" aria-current="step">Dados do aluno</li>
+              <li data-indicador="escolar" aria-current="step">Série e escola</li>
+              <li data-indicador="aluno">Dados do aluno</li>
               <li data-indicador="responsavel" hidden>Responsável</li>
               <li data-indicador="endereco">Endereço</li>
+              <li data-indicador="revisao">Revisão</li>
             </ol>
             <p id="cadastro-status" role="status" aria-live="polite"></p>
-            <fieldset data-etapa="aluno">
+            <fieldset data-etapa="escolar" disabled>
+              <legend tabindex="-1">Série e escola pretendidas</legend>
+              <p>Escolha entre as ofertas simuladas. A seleção da escola não garante vaga.</p>
+              <p>CPF do aluno verificado: <strong id="cpf-escolar"></strong></p>
+              <button id="alterar-cpf" type="button">Informar outro CPF</button>
+              <div class="campo">
+                <label for="anoLetivo">Ano letivo pretendido *</label>
+                <select id="anoLetivo" name="anoLetivo" required></select>
+              </div>
+              <div class="campo">
+                <label for="serie">Série ou ano escolar pretendido *</label>
+                <select id="serie" name="serie" required disabled></select>
+              </div>
+              <div class="campo">
+                <label for="municipioEscola">Município da unidade escolar *</label>
+                <select id="municipioEscola" name="municipioEscola" required disabled></select>
+              </div>
+              <div class="campo">
+                <label for="escola">Escola pretendida *</label>
+                <select
+                  id="escola"
+                  name="escola"
+                  required
+                  disabled
+                  aria-describedby="oferta-status"
+                ></select>
+              </div>
+              <div class="campo">
+                <label for="turno">Turno pretendido *</label>
+                <select
+                  id="turno"
+                  name="turno"
+                  required
+                  disabled
+                  aria-describedby="oferta-status"
+                ></select>
+              </div>
+              <p id="oferta-status" role="status" aria-live="polite"></p>
+              <div class="acoes"><button type="button" data-continuar>Continuar</button></div>
+            </fieldset>
+            <fieldset data-etapa="aluno" hidden disabled>
               <legend tabindex="-1">Dados do aluno</legend>
               <div class="campo" data-campo="nomeCompleto">
                 <label for="nomeCompleto">Nome completo *</label
@@ -193,9 +287,10 @@
                 ><input id="nomeSocial" name="nomeSocial" type="text" />
               </div>
               <div class="campo" data-campo="cpf">
-                <label for="cpf">CPF *</label
+                <label for="cpf">CPF do aluno verificado *</label
                 ><input
                   id="cpf"
+                  readonly
                   name="cpf"
                   type="text"
                   required
@@ -261,7 +356,10 @@
                 />
               </div>
               <datalist id="lista-cidades"></datalist>
-              <div class="acoes"><button type="button" data-continuar>Continuar</button></div>
+              <div class="acoes">
+                <button type="button" data-voltar>Voltar</button
+                ><button type="button" data-continuar>Continuar</button>
+              </div>
             </fieldset>
             <fieldset data-etapa="responsavel" hidden disabled>
               <legend tabindex="-1">Dados do responsável</legend>
@@ -427,25 +525,112 @@
               </div>
               <div class="acoes">
                 <button type="button" data-voltar>Voltar</button
-                ><button type="submit">Concluir cadastro</button>
+                ><button type="button" data-continuar>Revisar solicitação</button>
               </div>
             </fieldset>
-            <section
-              class="sucesso"
-              id="cadastro-concluido"
-              hidden
-              tabindex="-1"
-              aria-labelledby="titulo-concluido"
-            >
-              <h2 id="titulo-concluido">✓ Pré-matrícula demonstrativa concluída!</h2>
-              <p>Protocolo de exemplo: <strong id="protocolo"></strong>.</p>
-              <p>
-                Esta é uma simulação. Os dados não foram enviados para uma escola. Para efetivar a
-                matrícula, procure a secretaria.
-              </p>
-              <a class="voltar-inicio" href="/">Voltar ao início</a>
-            </section>
+            <fieldset data-etapa="revisao" hidden disabled>
+              <legend tabindex="-1">Revise sua pré-matrícula</legend>
+              <p>Confira as informações antes de registrar a solicitação simulada.</p>
+              <dl id="resumo-solicitacao" class="resumo-solicitacao"></dl>
+              <p>A pré-matrícula não garante vaga. Nenhum dado será enviado para uma escola.</p>
+              <div class="acoes">
+                <button type="button" data-voltar>Voltar</button
+                ><button id="confirmar-solicitacao" type="submit">Confirmar solicitação</button>
+              </div>
+            </fieldset>
           </form>
+          <article
+            class="comprovante-aluno"
+            id="cadastro-concluido"
+            hidden
+            tabindex="-1"
+            aria-labelledby="titulo-concluido"
+          >
+            <header class="comprovante-cabecalho">
+              <img src="/favicon.svg" width="52" height="52" alt="" />
+              <div>
+                <strong class="comprovante-marca">EDUCAHUB</strong>
+                <p>Rede Estadual de Ensino de Sergipe</p>
+              </div>
+            </header>
+            <h2 id="titulo-concluido"></h2>
+            <p class="comprovante-situacao" data-comprovante="situacao"></p>
+            <section aria-labelledby="titulo-solicitacao">
+              <h3 id="titulo-solicitacao">Informações da solicitação</h3>
+              <dl>
+                <div>
+                  <dt>Protocolo</dt>
+                  <dd id="protocolo" data-comprovante="protocolo"></dd>
+                </div>
+                <div>
+                  <dt>Data da solicitação</dt>
+                  <dd data-comprovante="data"></dd>
+                </div>
+                <div>
+                  <dt>Horário de Brasília</dt>
+                  <dd data-comprovante="horario"></dd>
+                </div>
+                <div>
+                  <dt>Ano letivo</dt>
+                  <dd data-comprovante="anoLetivo"></dd>
+                </div>
+              </dl>
+            </section>
+            <section aria-labelledby="titulo-aluno-comprovante">
+              <h3 id="titulo-aluno-comprovante">Dados do aluno</h3>
+              <dl>
+                <div>
+                  <dt>Nome</dt>
+                  <dd data-comprovante="nome"></dd>
+                </div>
+                <div>
+                  <dt>CPF</dt>
+                  <dd data-comprovante="cpf"></dd>
+                </div>
+              </dl>
+            </section>
+            <section aria-labelledby="titulo-escolar-comprovante">
+              <h3 id="titulo-escolar-comprovante">Informações escolares</h3>
+              <dl>
+                <div>
+                  <dt>Escola pretendida ou confirmada</dt>
+                  <dd data-comprovante="escola"></dd>
+                </div>
+                <div>
+                  <dt>Município</dt>
+                  <dd data-comprovante="municipio"></dd>
+                </div>
+                <div>
+                  <dt>Série ou ano escolar</dt>
+                  <dd data-comprovante="serie"></dd>
+                </div>
+                <div>
+                  <dt>Turno</dt>
+                  <dd data-comprovante="turno"></dd>
+                </div>
+                <div>
+                  <dt>Ano letivo</dt>
+                  <dd data-comprovante="anoLetivo"></dd>
+                </div>
+              </dl>
+            </section>
+            <section aria-labelledby="titulo-orientacoes">
+              <h3 id="titulo-orientacoes">Orientações e próximos passos</h3>
+              <p data-comprovante="orientacao"></p>
+              <p>
+                Procure a secretaria da unidade escolar para orientações e confirmação da
+                disponibilidade de vaga. Nenhum dado foi enviado a uma escola.
+              </p>
+              <p><strong>Documento demonstrativo do EducaHub, sem validade oficial.</strong></p>
+            </section>
+            <div class="comprovante-acoes">
+              <button type="button" id="imprimir-comprovante">Imprimir comprovante</button>
+              <button type="button" id="pdf-comprovante">Salvar comprovante em PDF</button>
+              <a href="/">Voltar à página inicial</a>
+              <button type="button" id="nova-solicitacao">Fazer outra pré-matrícula</button>
+              <p>Para salvar em PDF, escolha “Salvar como PDF” na janela de impressão.</p>
+            </div>
+          </article>
         </section>
         <p class="aviso-dados" data-scope-senimhyn>
           <svg
